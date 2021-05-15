@@ -126,7 +126,7 @@ function runRace(raceID) {
 				if (data.status === 'finished') {
 					clearInterval(raceInterval);
 					renderAt('#race', resultsView(data.positions)); // to render the results view
-					reslove(data); // resolve the promise
+					resolve(data); // resolve the promise
 				} else {
 					renderAt('#leaderBoard', raceProgress(data.positions));
 				}
@@ -194,11 +194,12 @@ function handleSelectTrack(target) {
 }
 
 function handleAccelerate() {
-	accelerate(store.get('race_id'))
-		.then(() => {
-			console.log('accelerate button clicked');
-		})
-		.catch((err) => console.error(err));
+	try {
+		accelerate(store.get('race_id'));
+	} catch (error) {
+		console.log(error);
+	}
+
 	// TODO - Invoke the API call to accelerate
 }
 
@@ -401,9 +402,7 @@ function startRace(id) {
 	return fetch(`${SERVER}/api/races/${id}/start`, {
 		method: 'POST',
 		...defaultFetchOpts(),
-	})
-		.then((res) => res.json())
-		.catch((err) => console.log('Problem with startRace request::', err));
+	}).catch((err) => console.log('Problem with startRace request::', err));
 }
 
 function accelerate(id) {
