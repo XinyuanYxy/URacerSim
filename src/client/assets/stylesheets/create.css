@@ -3,13 +3,11 @@
 /* -------------------  MOBILE  --------------------- */
 
 header {
-  background-image: url('https://via.placeholder.com/1150');
+	background-image: url('https://static2.srcdn.com/wordpress/wp-content/uploads/2020/09/Luffy-One-Piece.jpg');
 }
-
 
 /* -------------------  TABLET  --------------------- */
 @media (min-width: 768px) {
-
 }
 
 /* -------------------  DESKTOP  -------------------- */
